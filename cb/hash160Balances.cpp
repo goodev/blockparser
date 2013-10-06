@@ -110,7 +110,7 @@ struct Hash160Balances:public Callback
         std::vector<const char*> &v
     ) const
     {
-        v.push_back("balances");
+        v.push_back("hash160");
     }
 
     virtual int init(
