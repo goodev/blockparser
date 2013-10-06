@@ -302,12 +302,6 @@ struct Hash160Balances:public Callback
         if(0==nbRestricts) info("dumping all balances ...");
         else               info("dumping balances for %" PRIu64 " addresses ...", nbRestricts);
 
-        printf(
-            "---------------------------------------------------------------------------------------------------------------------------------------------------------------------\n"
-            "                 Balance                                  Hash160                             Base58   nbIn lastTimeIn                 nbOut lastTimeOut\n"
-            "---------------------------------------------------------------------------------------------------------------------------------------------------------------------\n"
-        );
-
         int64_t i = 0;
         int64_t nonZeroCnt = 0;
         while(likely(s<e)) {
@@ -321,24 +315,25 @@ struct Hash160Balances:public Callback
                 if(restrictMap.end()==r) continue;
             }
 
-            printf("%24.8f ", (1e-8)*addr->sum);
             showHex(addr->hash.v, kRIPEMD160ByteSize, false);
+            printf("\t");
+            printf("%.8f\n", (1e-8)*addr->sum);
             if(0<addr->sum) ++nonZeroCnt;
 
-            if(i<showAddr || 0!=nbRestricts) {
-                uint8_t buf[64];
-                hash160ToAddr(buf, addr->hash.v);
-                printf(" %s", buf);
-            } else {
-                printf(" XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-            }
+            //if(i<showAddr || 0!=nbRestricts) {
+                //uint8_t buf[64];
+                //hash160ToAddr(buf, addr->hash.v);
+                //printf(" %s", buf);
+            //} else {
+                //printf(" XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+            //}
 
-            char timeBuf[256];
-            gmTime(timeBuf, addr->lastIn);
-            printf(" %6" PRIu64 " %s ", addr->nbIn, timeBuf);
+            //char timeBuf[256];
+            //gmTime(timeBuf, addr->lastIn);
+            //printf(" %6" PRIu64 " %s ", addr->nbIn, timeBuf);
 
-            gmTime(timeBuf, addr->lastOut);
-            printf(" %6" PRIu64 " %s\n", addr->nbOut, timeBuf);
+            //gmTime(timeBuf, addr->lastOut);
+            //printf(" %6" PRIu64 " %s\n", addr->nbOut, timeBuf);
 
             //if(detailed) {
                 //auto e = addr->outputVec->end();
@@ -365,7 +360,6 @@ struct Hash160Balances:public Callback
         info("found %" PRIu64 " addresses with non zero balance", nonZeroCnt);
         info("found %" PRIu64 " addresses in total", (uint64_t)allAddrs.size());
         info("shown:%" PRIu64 " addresses", (uint64_t)i);
-        printf("\n");
         exit(0);
     }
 
