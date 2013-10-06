@@ -124,8 +124,8 @@ struct Hash160Balances:public Callback
         firstBlock = 0;
 
         addrMap.setEmptyKey(emptyKey);
-        addrMap.resize(15 * 1000 * 1000);
-        allAddrs.reserve(15 * 1000 * 1000);
+        addrMap.resize(19 * 1000 * 1000);
+        allAddrs.reserve(19 * 1000 * 1000);
 
         optparse::Values &values = parser.parse_args(argc, argv);
         cutoffBlock = values.get("atBlock");
@@ -155,11 +155,6 @@ struct Hash160Balances:public Callback
                 const uint160_t &h = *(i++);
                 restrictMap[h.v] = 1;
             }
-        } else {
-            //if(detailed) {
-                //warning("asking for --detailed for *all* addresses in the blockchain will be *very* slow");
-                //warning("as a matter of fact, it likely won't ever finish unless you have *lots* of RAM");
-            //}
         }
 
         info("analyzing blockchain ...");
@@ -202,10 +197,6 @@ struct Hash160Balances:public Callback
             addr->nbIn = 0;
             addr->sum = 0;
 
-            //if(detailed) {
-                //addr->outputVec = new OutputVec;
-            //}
-
             addrMap[addr->hash.v] = addr;
             allAddrs.push_back(addr);
         }
@@ -219,16 +210,6 @@ struct Hash160Balances:public Callback
         }
         addr->sum += value;
 
-        //if(detailed) {
-            //struct Output output;
-            //output.value = value;
-            //output.time = blockTime;
-            //output.upTXHash = upTXHash;
-            //output.downTXHash = downTXHash;
-            //output.inputIndex = inputIndex;
-            //output.outputIndex = outputIndex;
-            //addr->outputVec->push_back(output);
-        //}
     }
 
     virtual void endOutput(
@@ -247,19 +228,6 @@ struct Hash160Balances:public Callback
             outputIndex,
             value
         );
-    }
-
-    static void gmTime(
-        char *timeBuf,
-        const time_t &last
-    )
-    {
-        struct tm gmTime;
-        gmtime_r(&last, &gmTime);
-        asctime_r(&gmTime, timeBuf);
-
-        size_t sz =strlen(timeBuf);
-        if(0<sz) timeBuf[sz-1] = 0;
     }
 
     virtual void edge(
@@ -319,39 +287,6 @@ struct Hash160Balances:public Callback
             printf("\t");
             printf("%.8f\n", (1e-8)*addr->sum);
             if(0<addr->sum) ++nonZeroCnt;
-
-            //if(i<showAddr || 0!=nbRestricts) {
-                //uint8_t buf[64];
-                //hash160ToAddr(buf, addr->hash.v);
-                //printf(" %s", buf);
-            //} else {
-                //printf(" XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-            //}
-
-            //char timeBuf[256];
-            //gmTime(timeBuf, addr->lastIn);
-            //printf(" %6" PRIu64 " %s ", addr->nbIn, timeBuf);
-
-            //gmTime(timeBuf, addr->lastOut);
-            //printf(" %6" PRIu64 " %s\n", addr->nbOut, timeBuf);
-
-            //if(detailed) {
-                //auto e = addr->outputVec->end();
-                //auto s = addr->outputVec->begin();
-                //while(s!=e) {
-                    //printf("    %24.8f ", 1e-8*s->value);
-                    //gmTime(timeBuf, s->time);
-                    //showHex(s->upTXHash);
-                    //printf("%4" PRIu64 " %s", s->outputIndex, timeBuf);
-                    //if(s->downTXHash) {
-                        //printf(" -> %4" PRIu64 " ", s->inputIndex);
-                        //showHex(s->upTXHash);
-                    //}
-                    //printf("\n");
-                    //++s;
-                //}
-                //printf("\n");
-            //}
 
             ++i;
         }
