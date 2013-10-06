@@ -68,6 +68,13 @@ all:parser
 	@${CPLUS} -MD ${INC} ${COPT}  -c cb/dumpTX.cpp -o .objs/dumpTX.o
 	@mv .objs/dumpTX.d .deps
 
+.objs/hash160Balances.o : cb/hash160Balances.cpp
+	@echo c++ -- cb/hash160Balances.cpp
+	@mkdir -p .deps
+	@mkdir -p .objs
+	@${CPLUS} -MD ${INC} ${COPT}  -c cb/hash160Balances.cpp -o .objs/hash160Balances.o
+	@mv .objs/hash160Balances.d .deps
+
 .objs/pristine.o : cb/pristine.cpp
 	@echo c++ -- cb/pristine.cpp
 	@mkdir -p .deps
@@ -164,6 +171,7 @@ OBJS=                       \
     .objs/callback.o        \
     .objs/closure.o         \
     .objs/dumpTX.o          \
+    .objs/hash160Balances.o \
     .objs/help.o            \
     .objs/opcodes.o         \
     .objs/option.o          \
