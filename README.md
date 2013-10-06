@@ -98,6 +98,7 @@ blockparser
         . cb/allBalances.cpp    :   code to all balance of all addresses.
         . cb/closure.cpp        :   code to compute the transitive closure of an address
         . cb/dumpTX.cpp         :   code to display a transaction in very great detail
+        . cb/hash160Balances.cpp:   code to display all balance of all addresses (Format: hash160<TAB>balance)
         . cb/help.cpp           :   code to dump detailed help for all other commands
         . cb/pristine.cpp       :   code to show all "pristine" (i.e. unspent) blocks
         . cb/rewards.cpp        :   code to show all block rewards (including fees)

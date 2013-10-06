@@ -76,7 +76,7 @@ struct Hash160Balances:public Callback
         parser
             .usage("[options] [list of addresses to restrict output to]")
             .version("")
-            .description("dump the balance for all addresses that appear in the blockchain")
+            .description("dump the balance for all addresses that appear in the blockchain (Format: hash160<TAB>balance)")
             .epilog("")
         ;
         parser
