@@ -430,6 +430,8 @@ bool addrToHash160(
         memcpy(1+data, hash160, kRIPEMD160ByteSize);
         #if defined(LITECOIN)
             data[0] = 48;
+        #elif defined(PEERCOIN)
+            data[0] = 55;
         #else
             data[0] = 0;
         #endif

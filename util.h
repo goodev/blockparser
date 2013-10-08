@@ -257,6 +257,8 @@
         const uint8_t *hash160,
         #if defined(LITECOIN)
               uint8_t type = 48
+        #elif defined(PEERCOIN)
+              uint8_t type = 55
         #else
               uint8_t type = 0
         #endif

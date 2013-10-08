@@ -78,6 +78,9 @@ struct Transactions:public Callback
             #if defined(LITECOIN)
                 const char *addr = "LKvTVnkK2rAkJXfgPdkaDRgvEGvazxWS9o";
                 warning("no addresses specified, using popular address %s", addr);
+            #elif defined(PEERCOIN)
+                const char *addr = "PSpmbWa7Y1XTZ1WpLTjXVBGtMskMk7L37q";
+                warning("no addresses specified, using popular address %s", addr);
             #else
                 const char *addr = "1dice8EMZmqKvrGE4Qc9bUFf9PX3xaYDp";
                 warning("no addresses specified, using satoshi's dice address %s", addr);
