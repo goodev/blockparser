@@ -1,4 +1,3 @@
-
 #include <util.h>
 #include <common.h>
 #include <errlog.h>
@@ -369,6 +368,8 @@ static void mapBlockChainFiles()
     std::string coinName(
         #if defined LITECOIN
             "/.litecoin/"
+        #elif defined ASIACOIN
+            "/.asiacoin/"
         #elif defined PEERCOIN
             "/.ppcoin/"
         #else
@@ -518,6 +519,8 @@ static bool buildBlock(
     static const uint32_t expected =
     #if defined(LITECOIN)
         0xdbb6c0fb
+    #elif defined(ASIACOIN)
+        0xead2f532
     #elif defined(PEERCOIN)
         0xe5e9e8e6
     #else
