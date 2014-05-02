@@ -80,7 +80,6 @@ struct Transactions:public Callback
             #elif defined(ASIACOIN)
                 const char *addr = "AMjNZU49obb6LLceMaL67MqkNXP2oyQpg4";
                 warning("no addresses specified, using test address %s", addr);
-            #else
             #elif defined(PEERCOIN)
                 const char *addr = "PSpmbWa7Y1XTZ1WpLTjXVBGtMskMk7L37q";
                 warning("no addresses specified, using popular address %s", addr);
