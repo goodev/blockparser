@@ -1,4 +1,3 @@
-
 SHELL=/bin/sh
 MAKEFLAGS=-j8
 
@@ -7,6 +6,7 @@ CPLUS = g++
 INC =                           \
         -I.                     \
         -DNDEBUG                \
+        -DASIACOIN              \
 #        -DPEERCOIN              \
 #        -DLITECOIN              \
 
