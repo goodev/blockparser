@@ -1,4 +1,3 @@
-
 // Dump all transactions affecting a specific address
 
 #include <time.h>
@@ -78,6 +77,10 @@ struct Transactions:public Callback
             #if defined(LITECOIN)
                 const char *addr = "LKvTVnkK2rAkJXfgPdkaDRgvEGvazxWS9o";
                 warning("no addresses specified, using popular address %s", addr);
+            #elif defined(ASIACOIN)
+                const char *addr = "AMjNZU49obb6LLceMaL67MqkNXP2oyQpg4";
+                warning("no addresses specified, using test address %s", addr);
+            #else
             #elif defined(PEERCOIN)
                 const char *addr = "PSpmbWa7Y1XTZ1WpLTjXVBGtMskMk7L37q";
                 warning("no addresses specified, using popular address %s", addr);
